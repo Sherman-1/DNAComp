@@ -1,15 +1,23 @@
-use std::io as io;
-
 fn main() {
-    println!("Guess the number!");
+    
 
-    println!("Please input your guess.");
+    let s = String::from("Bonjour les amis");
 
-    let mut guess = String::new();
+    let r: &str = first_word(&s);
 
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
+    println!("{r}");
+}
 
-    println!("You guessed: {}", guess);
+fn first_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            let result = &s[0..i];
+
+            return result;
+        }
+    }
+
+    &s[..]
 }
